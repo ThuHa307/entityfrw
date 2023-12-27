@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using entityfrw.models;
 using Microsoft.AspNetCore.Razor.Language;
+using Microsoft.AspNetCore.Authorization;
 
 namespace entityfrw.Pages_Blog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
 

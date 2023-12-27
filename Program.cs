@@ -52,6 +52,15 @@ builder.Services.Configure<IdentityOptions> (options => {
 
 });
 
+builder.Services.ConfigureApplicationCookie(options => {
+    options.Cookie.HttpOnly = true;  
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);  
+  
+    options.LoginPath = "/Identity/Account/Login";  //set the login page.  
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";  
+    options.SlidingExpiration = true; 
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -67,8 +76,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorPages();
 
