@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using entityfrw.models;
-using Microsoft.AspNetCore.Razor.Language;
+using Microsoft.AspNetCore.Authorization;
 
 namespace entityfrw.Pages_Blog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
 
@@ -18,9 +15,9 @@ namespace entityfrw.Pages_Blog
 
         [BindProperty(SupportsGet = true, Name = "p")]
         public int currentPage { set; get; }
-        private readonly entityfrw.models.MyBlogContext _context;
+        private readonly MyBlogContext _context;
 
-        public IndexModel(entityfrw.models.MyBlogContext context)
+        public IndexModel(MyBlogContext context)
         {
             _context = context;
         }

@@ -49,7 +49,20 @@ builder.Services.Configure<IdentityOptions> (options => {
     // Cấu hình đăng nhập.
     options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
     options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+    options.SignIn.RequireConfirmedAccount = false;       // Xác thực tài khoản
 
+});
+
+builder.Services.ConfigureApplicationCookie(options =>  
+{  
+    // Cookie settings  
+    //options.Cookie.HttpOnly = true;  
+    //options.ExpireTimeSpan = TimeSpan.FromMinutes(5);  
+  
+    options.LoginPath = "/Identity/Account/Login";  //set the login page.  
+    options.LogoutPath = "/Identity/Account/Logout";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";  
+    //options.SlidingExpiration = true;  
 });
 
 var app = builder.Build();
