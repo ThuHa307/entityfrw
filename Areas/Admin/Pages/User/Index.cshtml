@@ -1,0 +1,23 @@
+﻿@page "/admin/members"
+@model App.Admin.User.IndexModel
+@{
+    ViewData["title"] = "List of users";
+}
+<h1>@ViewData["title"]</h1>
+<partial name="_StatusMessage" model="@Model.StatusMessage"/>
+<table class="table">
+    <tr>
+        <th>User Name</th>
+        <th>Role</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var user in Model.Users) {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.RoleNames</td>
+            <td>
+                <a class="btn btn-success btn-sm" asp-page="./AddRole" asp-route-id="@user.Id">Add Role</a>
+            </td>
+        </tr>
+    }
+</table>
